@@ -27,7 +27,8 @@ export const BOOTSTRAP_MODULE     = ENABLE_HOT_LOADING ? 'hot_loader_main' : 'ma
 export const APP_TITLE            = 'Angular 2 Seed';
 
 export const APP_SRC              = 'src';
-export const ASSETS_SRC           = `${APP_SRC}/assets`;
+export const TMP_SRC              = 'tmp';
+export const ASSETS_SRC           = ENV === 'dev' ? `${APP_SRC}/assets` : `${TMP_SRC}/assets`;
 
 export const TOOLS_DIR            = 'tools';
 export const DOCS_DEST            = 'docs';

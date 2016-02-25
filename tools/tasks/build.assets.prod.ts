@@ -1,5 +1,5 @@
 import {join} from 'path';
-import {APP_SRC, APP_DEST} from '../config';
+import {APP_DEST, TMP_SRC} from '../config';
 
 export = function buildAssetsDev(gulp, plugins) {
   // TODO There should be more elegant to prevent empty directories from copying
@@ -15,10 +15,11 @@ export = function buildAssetsDev(gulp, plugins) {
   };
   return function () {
     return gulp.src([
-        join(APP_SRC, '**'),
-        '!' + join(APP_SRC, '**', '*.ts'),
-        '!' + join(APP_SRC, '**', '*.css'),
-        '!' + join(APP_SRC, '**', '*.html'),
+        join(TMP_SRC, '**'),
+        '!' + join(TMP_SRC, '**', '*.ts'),
+        '!' + join(TMP_SRC, '**', '*.css'),
+        '!' + join(TMP_SRC, '**', '*.scss'),
+        '!' + join(TMP_SRC, '**', '*.html'),
       ])
       .pipe(onlyDirs(es))
       .pipe(gulp.dest(APP_DEST));

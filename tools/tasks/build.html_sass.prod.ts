@@ -11,11 +11,17 @@ import {
 export = function buildJSDev(gulp, plugins) {
   return function () {
 
-    return merge(minifyComponentCss(), prepareTemplates(), processExternalCss());
+    return merge(buildSass(), minifyComponentCss(), prepareTemplates(), processExternalCss());
 
     function prepareTemplates() {
       return gulp.src(join(TMP_SRC, '**', '*.html'))
         .pipe(gulp.dest(TMP_DIR));
+    }
+
+    function buildSass() {
+      return gulp.src(join(TMP_SRC, '**', '*.scss'))
+        .pipe(plugins.sass().on('error', plugins.sass.logError))
+        .pipe(gulp.dest(TMP_SRC));
     }
 
     function minifyComponentCss() {
